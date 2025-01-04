@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string caesarEncrypt(string plaintext, int key) {
+    string ciphertext = "";
+    for (char c : plaintext) {
+        if (isalpha(c)) {
+            char offset = isupper(c) ? 'A' : 'a';
+            ciphertext += (c - offset + key) % 26 + offset;
+        } else {
+            ciphertext += c; // Keep non-alphabetic characters unchanged
+        }
+    }
+    return ciphertext;
+}
+
+int main() {
+    string plaintext;
+    int key;
+
+    // Input plaintext and key
+    cout << "Enter the plaintext: ";
+    getline(cin, plaintext);
+    cout << "Enter the key: ";
+    cin >> key;
+
+    // Encrypt the plaintext
+    string ciphertext = caesarEncrypt(plaintext, key);
+    cout << "Ciphertext: " << ciphertext << endl;
+
+    return 0;
+}
